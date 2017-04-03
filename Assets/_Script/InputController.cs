@@ -6,6 +6,9 @@ using UnityEngine;
 public class InputController : MonoBehaviour
 {
     [SerializeField]
+    private GameObject player;
+
+    [SerializeField]
     private GameObject ak47;
 
     [SerializeField]
@@ -46,6 +49,10 @@ public class InputController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             setWeaponActive(deagle);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            setWeaponActive(false);
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {

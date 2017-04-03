@@ -8,13 +8,15 @@ public class HeadCamera : MonoBehaviour
     [SerializeField]
     private Transform targetPlayer;
 
-    public float rotSpeed = 4f;
+    public float rotSpeed = 1f;
     private float _rotX;
     private float _rotY;
     private Vector3 _offSet;
 
     private void Start()
     {
+        targetPlayer.GetComponent<EyesCamera>().enabled = false;
+
         _rotX = transform.eulerAngles.x;
         _rotY = transform.eulerAngles.y;
         _offSet = targetPlayer.position - transform.position;
