@@ -7,10 +7,13 @@ public static class GlobalData
     public static float timeAfterGame;
 
     //player
-    public static int playerBlood;
+    public static int playerKilledNum = 0;
 
-    public static int playerArmor;
-    public static int playerKilledNum;
-    public static int playerCurrentGunDamage;
-    public static int playerScore;
+    public static int blood = 100;
+    public static int armor = 0;
+    public static int playerDamage = 50;
+    public static int playerScore = 0;
+
+    //enemy
+    public static float enemyBlood = 100;
 }

@@ -14,8 +14,8 @@ public class EyesCamera : MonoBehaviour
     public float sensitivityHor = 9.0f;
     public float sensitivityVer = 9.0f;
 
-    public float minVert = -15.0f;
-    public float maxVert = 45.0f;
+    public float minVert = -30.0f;
+    public float maxVert = 30.0f;
 
     private float _rotationX = 0;
 

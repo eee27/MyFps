@@ -26,7 +26,7 @@ public class RayShooter : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                StartCoroutine(InitBulletPoint(hit.point));
+                StartCoroutine(InitBulletPoint(hit));
             }
         }
     }
@@ -41,10 +41,11 @@ public class RayShooter : MonoBehaviour
 
     /*----------------------------------------------*/
 
-    private IEnumerator InitBulletPoint(Vector3 pos)
+    private IEnumerator InitBulletPoint(RaycastHit hit)
     {
-        GameObject bullet = Instantiate(bulletPoint, pos, bulletPoint.transform.rotation);
-        yield return new WaitForSeconds(1);
+        GameObject bullet = Instantiate(bulletPoint, hit.point, bulletPoint.transform.rotation);
+
+        yield return new WaitForSeconds(0.08f);
         Destroy(bullet);
     }
 }
