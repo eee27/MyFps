@@ -1,32 +1,48 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
     [SerializeField]
-    private Transform bloodRed;
-
-    [SerializeField]
-    private Transform bloodBlack;
-
-    [SerializeField]
     private GameObject enemyAnim;
 
+    [SerializeField]
+    private Transform player;
+
+    private bool enemyIsDead = false;
+
     private float enemyCurrentBlood;
-    public static float wtf;
     private Animation anim;
+    public static bool isSetUp = false;
+
+    private NavMeshAgent nav;
+    private float distance;
 
     private void Start()
     {
+        nav = GetComponent<NavMeshAgent>();
         anim = enemyAnim.GetComponent<Animation>();
-        enemyCurrentBlood = GlobalData.enemyBlood;
-        UpdateBloodBar(enemyCurrentBlood);
+        enemyCurrentBlood = 100;
     }
 
     private void Update()
     {
         if (enemyCurrentBlood <= 0) { enemyDead(); }
+
+        if (isSetUp)
+        {
+            distance = Vector3.Distance(player.transform.position, transform.position);
+            if (distance <= 20 && !enemyIsDead)
+            {
+                nav.destination = player.position;
+            }
+            if (enemyIsDead)
+            {
+                nav.Stop();
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -35,24 +51,15 @@ public class Enemy : MonoBehaviour
         {
             enemyCurrentBlood -= GlobalData.playerDamage;
             anim.Play("hit");
-            UpdateBloodBar(enemyCurrentBlood);
         }
     }
 
     /*------------------------------------*/
 
-    private void UpdateBloodBar(float enemyBlood)
-    {
-        if (enemyCurrentBlood >= 0)
-        {
-            bloodBlack.localScale = new Vector3((100 - enemyBlood) * 0.01f * 2f, bloodBlack.localScale.y, bloodBlack.localScale.z);
-            bloodBlack.position = new Vector3((2f - bloodBlack.localScale.x) / 2f, bloodBlack.position.y, bloodBlack.position.z);
-        }
-    }
-
     private void enemyDead()
     {
         anim.Play("idlefloor");
+        enemyIsDead = true;
         // Destroy(gameObject);
     }
 }

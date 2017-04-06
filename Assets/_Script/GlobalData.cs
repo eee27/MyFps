@@ -11,7 +11,7 @@ public static class GlobalData
 
     public static int blood = 100;
     public static int armor = 0;
-    public static int playerDamage = 50;
+    public static int playerDamage = 30;
     public static int playerScore = 0;
 
     //enemy
