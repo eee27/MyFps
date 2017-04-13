@@ -9,9 +9,10 @@ public static class GlobalData
     //player
     public static int playerKilledNum = 0;
 
-    public static int blood = 100;
+    public static int blood = 10;
     public static int armor = 0;
-    public static int playerDamage = 30;
+    public static float playerDamage = 10f;
+    public static float playerDamageRate = 1.0f;
     public static int playerScore = 0;
 
     //enemy

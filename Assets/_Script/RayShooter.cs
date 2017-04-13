@@ -7,6 +7,12 @@ public class RayShooter : MonoBehaviour
     [SerializeField]
     private GameObject bulletPoint;
 
+    [SerializeField]
+    private AudioSource audioSource;
+
+    [SerializeField]
+    private AudioClip hitSound;
+
     private Camera _camera;
 
     private void Start()
@@ -44,7 +50,7 @@ public class RayShooter : MonoBehaviour
     private IEnumerator InitBulletPoint(RaycastHit hit)
     {
         GameObject bullet = Instantiate(bulletPoint, hit.point, bulletPoint.transform.rotation);
-
+        audioSource.PlayOneShot(hitSound);
         yield return new WaitForSeconds(0.08f);
         Destroy(bullet);
     }

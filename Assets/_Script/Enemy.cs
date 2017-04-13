@@ -15,7 +15,6 @@ public class Enemy : MonoBehaviour
 
     private float enemyCurrentBlood;
     private Animation anim;
-    public static bool isSetUp = false;
 
     private NavMeshAgent nav;
     private float distance;
@@ -31,17 +30,14 @@ public class Enemy : MonoBehaviour
     {
         if (enemyCurrentBlood <= 0) { enemyDead(); }
 
-        if (isSetUp)
+        distance = Vector3.Distance(player.transform.position, transform.position);
+        if (distance <= 20 && !enemyIsDead)
         {
-            distance = Vector3.Distance(player.transform.position, transform.position);
-            if (distance <= 20 && !enemyIsDead)
-            {
-                nav.destination = player.position;
-            }
-            if (enemyIsDead)
-            {
-                nav.Stop();
-            }
+            nav.destination = player.position;
+        }
+        if (enemyIsDead)
+        {
+            nav.Stop();
         }
     }
 
@@ -49,7 +45,8 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.tag == "Bullet")
         {
-            enemyCurrentBlood -= GlobalData.playerDamage;
+            Debug.Log(GlobalData.playerDamage * GlobalData.playerDamageRate);
+            enemyCurrentBlood -= GlobalData.playerDamage * GlobalData.playerDamageRate;
             anim.Play("hit");
         }
     }

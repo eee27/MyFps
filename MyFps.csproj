@@ -78,12 +78,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\_Script\Bag.cs" />
     <Compile Include="Assets\_Script\CameraController.cs" />
     <Compile Include="Assets\_Script\Enemy.cs" />
     <Compile Include="Assets\_Script\EyesCamera.cs" />
     <Compile Include="Assets\_Script\GlobalData.cs" />
     <Compile Include="Assets\_Script\HeadCamera.cs" />
-    <Compile Include="Assets\_Script\InputController.cs" />
     <Compile Include="Assets\_Script\LookAt.cs" />
     <Compile Include="Assets\_Script\Player.cs" />
     <Compile Include="Assets\_Script\RayShooter.cs" />
