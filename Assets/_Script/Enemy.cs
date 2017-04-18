@@ -18,6 +18,7 @@ public class Enemy : MonoBehaviour
 
     private NavMeshAgent nav;
     private float distance;
+    private Vector3 enemyOldPos;
 
     private void Start()
     {
@@ -29,15 +30,26 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
         if (enemyCurrentBlood <= 0) { enemyDead(); }
-
-        distance = Vector3.Distance(player.transform.position, transform.position);
-        if (distance <= 20 && !enemyIsDead)
-        {
-            nav.destination = player.position;
-        }
         if (enemyIsDead)
         {
             nav.Stop();
+        }
+        else
+        {
+            distance = Vector3.Distance(player.transform.position, transform.position);
+            if (distance <= 20)
+            {
+                nav.destination = player.position;
+            }
+            if (distance <= 3)
+            {
+                anim.Play("attack1");
+            }
+            if (enemyOldPos != transform.position && !anim.isPlaying)
+            {
+                anim.Play("walk1");
+            }
+            enemyOldPos = transform.position;
         }
     }
 
@@ -45,7 +57,6 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.tag == "Bullet")
         {
-            Debug.Log(GlobalData.playerDamage * GlobalData.playerDamageRate);
             enemyCurrentBlood -= GlobalData.playerDamage * GlobalData.playerDamageRate;
             anim.Play("hit");
         }

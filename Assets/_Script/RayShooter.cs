@@ -13,6 +13,12 @@ public class RayShooter : MonoBehaviour
     [SerializeField]
     private AudioClip hitSound;
 
+    [SerializeField]
+    private AudioClip lowBloodSound;
+
+    [SerializeField]
+    private AudioClip killSound;
+
     private Camera _camera;
 
     private void Start()
