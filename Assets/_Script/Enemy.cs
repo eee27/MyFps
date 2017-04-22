@@ -11,6 +11,12 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private Transform player;
 
+    [SerializeField]
+    private AudioSource audioSource;
+
+    [SerializeField]
+    private AudioClip attackClip;
+
     private bool enemyIsDead = false;
 
     private float enemyCurrentBlood;
@@ -44,6 +50,7 @@ public class Enemy : MonoBehaviour
             if (distance <= 3)
             {
                 anim.Play("attack1");
+                audioSource.PlayOneShot(attackClip, 0.03f);
             }
             if (enemyOldPos != transform.position && !anim.isPlaying)
             {
@@ -68,6 +75,11 @@ public class Enemy : MonoBehaviour
     {
         anim.Play("idlefloor");
         enemyIsDead = true;
-        // Destroy(gameObject);
+        Invoke("DestroyEnemy", 2);
+    }
+
+    private void DestroyEnemy()
+    {
+        Destroy(gameObject);
     }
 }

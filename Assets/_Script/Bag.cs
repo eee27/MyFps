@@ -48,11 +48,21 @@ public class Bag : MonoBehaviour
     {
     }
 
+    private void OnEnable()
+    {
+        GlobalData.isUi = true;
+    }
+
+    private void OnDisable()
+    {
+        GlobalData.isUi = false;
+    }
+
     /*----------------------------------------------------------*/
 
     private void TestAddItem()
     {
-        LoadItemImage(0, 1, 1);
+        LoadItemImage(0, 1, 5);
         LoadItemImage(1, 2, 2);
         LoadItemImage(2, 3, 3);
         LoadItemImage(3, 4, 4);

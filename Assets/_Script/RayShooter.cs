@@ -13,12 +13,6 @@ public class RayShooter : MonoBehaviour
     [SerializeField]
     private AudioClip hitSound;
 
-    [SerializeField]
-    private AudioClip lowBloodSound;
-
-    [SerializeField]
-    private AudioClip killSound;
-
     private Camera _camera;
 
     private void Start()
@@ -31,7 +25,7 @@ public class RayShooter : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !GlobalData.isUi)
         {
             Vector3 point = new Vector3(_camera.pixelWidth / 2, _camera.pixelHeight / 2, 0);
             Ray ray = _camera.ScreenPointToRay(point);
@@ -56,6 +50,7 @@ public class RayShooter : MonoBehaviour
     private IEnumerator InitBulletPoint(RaycastHit hit)
     {
         GameObject bullet = Instantiate(bulletPoint, hit.point, bulletPoint.transform.rotation);
+        audioSource.clip = hitSound;
         audioSource.PlayOneShot(hitSound);
         yield return new WaitForSeconds(0.08f);
         Destroy(bullet);

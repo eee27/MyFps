@@ -12,9 +12,6 @@ public class Player : MonoBehaviour
     private AudioSource audioSource;
 
     [SerializeField]
-    private AudioClip reloadSound;
-
-    [SerializeField]
     private Text pickText;
 
     [SerializeField]
@@ -46,6 +43,14 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Application.Quit();
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Enemy")
+        {
+            StartCoroutine(HitByEnemy());
         }
     }
 
@@ -96,5 +101,11 @@ public class Player : MonoBehaviour
                 pickText.gameObject.SetActive(false);
             }
         }
+    }
+
+    private IEnumerator HitByEnemy()
+    {
+        GlobalData.blood -= 12;
+        yield return new WaitForSeconds(2);
     }
 }
