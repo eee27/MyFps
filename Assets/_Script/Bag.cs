@@ -112,7 +112,7 @@ public class Bag : MonoBehaviour
         switch (itemKinds[itemListNum])
         {
             case 1: { GlobalData.blood += 10; break; }
-            case 2: { GlobalData.armor += 10; break; }
+            case 2: { /*armor*/ break; }
             case 3: { GlobalData.playerScore += 1000; break; }
             case 4: { GlobalData.playerDamageRate += 1f; break; }
         }

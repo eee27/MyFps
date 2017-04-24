@@ -105,7 +105,7 @@ public class Player : MonoBehaviour
 
     private IEnumerator HitByEnemy()
     {
-        GlobalData.blood -= 12;
+        GlobalData.blood -= GlobalData.enemyZombieDamage;
         yield return new WaitForSeconds(2);
     }
 }

@@ -11,12 +11,13 @@ public static class GlobalData
     //player
     public static int playerKilledNum = 0;
 
-    public static int blood = 50;
-    public static int armor = 0;
+    public static float blood = 50;
     public static float playerDamage = 10f;
     public static float playerDamageRate = 1.0f;
     public static int playerScore = 0;
 
     //enemy
     public static float enemyBlood = 100;
+
+    public static float enemyZombieDamage = 12;
 }
